@@ -1,0 +1,31 @@
+Each router needs a routing table to function.
+
+They can be constructed Statically OR Dynamically
+
+Static Routing:
+
+	* Created, updated, maintained by the Network administrator.
+	* Done through command line (Cisco IoS)
+	* Every route on every router needs configured
+	* Fine level of Control, but labour intensive
+	* Difficult to keep static routes up to date
+	* Can't cope with which router crashes / go offline.
+	* Can't automatically choose a better route if one becomes avaliable
+
+	-> Routers will not share static routes with each other. Reduces RAM / CPU overhead.
+	-> Static routes have an administrative Distance AD of 1. 
+
+
+Dyanmic Routing:
+
+Created, maintained & updated by a routing protocol. Examples include:
+	-> RIP (Routing Information Protocol)
+	-> EIGRP (Enhanced Interior Gateway Routing Protocol)
+	-> OSPF (Open Shortest Path First)
+	-> BGP (Border Gateway Protocol)
+
+Routers DO share dynamic routing information with each other. = Increased CPU / RAM overhead.
+
+Routing protocols able of dynamically choosing the best path when routing infrastrucure changes.
+
+Routing protocol = Dynamically builds the network, topology & next hop information in routing tables.

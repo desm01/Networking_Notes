@@ -1,0 +1,14 @@
+Local Communication:
+* Eliminates duplication -> Sharing resources between other computers
+* Technical & Economic Reasons -> Shared networks benefical for local communication
+* Computers attached to shared network must co-ordinate to use Network Communication. LAN allows this
+* The time required to communicate depends on distance
+* A network spread over large distance = Long delays.
+
+Significance of LAN:
+* LAN = Inexpensive
+* For computer science -> Success linked to the locaclity of reference principle
+
+IF a pair of computers communicate = They're likely to communicate again in the near future.
+
+A Computer tends to communicate most often with the computers that are nearby.

@@ -1,0 +1,20 @@
+The early version of Ethernet = Single cable. Terminator at each end. T connector in cable connects to PC Network Card.
+
+More PCs = Very Slow & Unusable
+
+ONE PC transmits at a time. If two transmit = collision. 
+All other PCs need to be silent at one time.
+
+More PCs = More data = Less time for each PC.
+
+The first approach was an Ethernet bridge. -> Allowed LAN Segment to be scaled up.
+
+In Bridge = PCs still have to compete for time, but segments don't compete with each other. === 	Bridges too expensive / (Add Latency)
+
+Modern Solution = SWITCHES
+
+***************************************************************************
+
+* Every device connects to one port on the Switch. No delay in communication as single cable.
+* Small delay in transmission - High performance devices
+* Switch stores data in tables. MAC addresses stored in memory. 

@@ -1,0 +1,76 @@
+Autonomous Systems:::
+
+	What is the internet?
+
+The internet is an almagam of individual IP Networks. These networks are known as AS.
+
+Every AS connects to the internet through ISP.
+
+ISPs can be seen as an AS
+
+ISPs connect to each other through each countries IX (Internet Exchange)
+
+London has an IXP etc, as does Dublin. 
+
+*************************************************************************************************************************
+
+	In some places ASes connect to each other.
+
+An AS in Network X doesn't need to know the inner working of Network Y. Just needs the address of AS Y.
+
+(Exterior Gateway Protocols) ->	Router at the edge of an AS tell others about itself.
+(Interior Gateway Protocols) -> Router in AS talks to its own routers about itself.
+
+
+
+UK University uses JANET as an ISP.
+
+
+**************************************************************************************************************************
+
+An Autonomous System is:
+
+a COLLECTION of IP routing prefixes. (IPv4 Addresses)
+
+under the CONTROL of one or more network operators. (Could be you??? Or an ISP or Business person)
+
+act on behalf of a single administrative entity or domain. -> Presents a clearly defined routing policy to the internet
+
+	FYI: -> CIDR BLOCK = IPv4 Address
+
+
+
+EXAMPLE:
+
+	143.117.0.0/22 	CIDR BLOCK
+
+	Above network could represent several sub networks. 
+
+	You present above IP to outside world through extrenal gateway.
+	Let the router handle routing external packets through internal network.
+
+
+
+
+Classic Definition:
+	
+	A set of routers under a single technical administration. Using an interior gateway protocol and common metrics to route packets within the AS.
+	And using an exterior gateway protocol to route packets to other ASes.
+
+
+New Definition:
+	For a single AS to use several interior gateway protocols and diffrent metrics.
+ 
+	An AS administartor appears to other ASes to have a single coherent interior routing plan.
+
+
+**************************************************************************************************************************
+Every AS has a globally unique number.
+
+Sometimes refered to as ASN.
+
+The number is used in both:
+	The exchange of exterior routing information. (Between neighbouring ASes)
+	As an identifier of the AS itself.
+
+

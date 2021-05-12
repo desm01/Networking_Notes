@@ -1,0 +1,63 @@
+WHAT IS BGP -> border gateway protocol:
+
+BGP is an inter-domain path-vector routing protocol.
+
+It runs on TCP port 179.
+
+Provides a reliable loop free routing between diffrent Autonomous Systems
+
+Current version is BGP-4. It supports protocols for IPv4 & IPv6..
+
+********************************************************************************************************
+
+In BGP,
+
+Routers = Speakers.
+
+They form PEERing. Neighbour relationships with other BGP routers.
+
+BGP that connect to other ASes are known as external BGP (eBGP).
+
+RFCs ->
+	BGP was first defined in RFC1105
+	BGP-4 was published in 1995 in RFC1771
+	
+	BGP-4 remains the current version. But there's been additions. RFC 4270 (Published 2006) is the latest relevant standard.
+
+Routing protocols classified depending on the way they store information on routes.
+
+PATH - VECTOR  (BGP uses this)
+
+PATH - DISTANCE
+
+LINK - STATE
+
+******************************************************************************************************
+
+Format of AS Numbers. 
+
+Prior to Janurary 2009, BGP autonomous system numbers that were allocated to companies were:
+	2 octet numbers. 16 bits. Described in RFC 4271.
+
+Due to increased demand for AS numbers, IANA started to allocate 4 octet 32 bit AS numbers.
+
+
+
+
+RFCs allow for two diffrent represenations of these 2/4 octet numbers. 	-> 	Asplain	// Asdot
+
+Private AS Number = 23456. Created in RFC 4893. Some vendors do not allow use of this AS number.
+
+
+Asplain:
+	Decimal value notation where AS numbers are represented by their decimal values.
+	EG 2 byte = 65526
+	EG 4 byte = 234567
+
+Asdot:
+	Two byte numbers represented by their decimal value.	EG 65526
+	Four byte numbers are represented by their dot notation.	EG 1.169031
+	
+
+
+

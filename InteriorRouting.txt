@@ -1,0 +1,112 @@
+Interior Routing:	Inside the AS.
+
+What is routing?
+
+
+Finding the best way to route data from a certain point to another.
+
+Routing Computation is distributed among the routers in a domain,
+
+Finding the correct route (Best Hop) is the most CPU / Memory intensive task a router can do. (Many interior protocols) = Diffrent benefits and drawbacks
+
+You can use Vectoring OR Link States
+
+*****************************************************************************
+
+Vectoring: -> 
+	* Each routers knows little about the topology
+	* Only the best NEXT hop is choosen. Not the best total route.
+	* Doesn't need a uniform policy on all routers
+	* No notion of distance. Just the next node in chain.
+	* The compisition of the path from A-Z is formed from best possible hop at each node
+
+Vectoring = RIP / BGP
+
+
+****************************************************************************
+
+
+Link State: ->
+	* Topology information is FLOODED within the domain.
+	* The BEST path is COMPUTED locally on each router
+	* Best END-END paths determine hops
+	* Tries to limit distance.
+	* ONLY works if the policy is UNIFORM and all routers in the domain have a shared policy.
+
+Link State = OSPF, IS-IS
+
+***************************************************************************
+
+Open Shortest Path First (OSPF)
+
+* Each OSPF router on the network communicates with other neighbouring routers. 
+* It establishes the state of all adjacent neighbours and gathers their neighbours.
+* Every communication sequence is a seperate conversation identified by the pair of Router IDs of the communicating neighbours.
+
+
+OSPF routers ADVERTISE their routing topology across the OSPF domain via Link State Advertising. These LSAs are sent in the form of Link State Updates between adjacent routers.
+
+****************************************************************************
+
+With OSPF a single AS is divided into smaller groups called areas. 
+
+The backbone area is the core of the OSPF network. Every other area must be connected to the backbone area.
+
+
+Much communication is between routers in the same area. This reduces overhead traffic sent on the network, and reduces size of the topology database that each router maintains.
+
+
+
+AREA -> Logical collection of OSPF networks, routers & links that have the same AREA IDENTIFICATION.
+
+A router within an AREA -> Must maintain topological database for the area to which it belongs. 
+The router does not have detailed information about network topology outside its network.
+= Therefore database size is reduced.
+
+	Types of OSPF routers:
+		* Backbone Router = Has atleast one of its interfaces in the backbone area.
+		* Internal Router = Has all its interfaces in a single area.
+		* Area Border Router (ABR) = An OSPF router that has one or more interfaces in the backbone area and one or more interfaces in a non-backbone area.
+		* Autonomous System Border Control (ASBR) = Connects to an area and also to an external AS.
+
+
+
+******************************************************************************
+
+OSPF runs over IP DIRECTLY.
+
+OSPF packets are encapsulated solely by IP & local data-link headers.
+
+OSPF does not define a way to fragment its protocols packets and depends on IP fragmentation when transmitting packets larger than Network MTU.
+
+* Length of packets can be up to 65,535 bytes (Including IP header)
+
+OSPF packets:
+	* Likely to be large. (Database Description Packets, Link)
+	* State Request, Link State Update & Link State Acknoledgment
+	* Packets can usually be split into several seperate protocol packets without loss of functionality
+
+OSPF uses multicast.
+	Broadcasts using IP 224.0.0.0 & 224.0.0.255
+	These IPs assigned by IANA and designated for multicasting on local sub-net only.
+	Time to live of multicasted packets set to 1. Ensures it says link-local.
+
+Messages: ->
+	* Hello
+	* Database Descriptions
+	* Link State Request
+	* Link State Update
+	* Link State Acknowledgment 
+
+
+
+
+
+
+
+
+
+
+
+
+
