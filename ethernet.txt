@@ -1,0 +1,99 @@
+Ethernet = Technology for LAN. 
+
+In order to understand how data is sent between LANs, we need to move to layer three: Ethernet Used to route packets from one to another LAN.
+
+Ethernet falls under the IEEE 802.x standards. Other two notable members are WiFi & BlueTooth
+
+Revision MAC Address - Layer 2 Addresses:
+
+Each NIC is assigned a globally unique MAC address. 48 bit address, first 24 assigned by IEEE, Vendor free to use remaining 24 bits
+
+
+	The Frame Format. (Ethernet packets)
+
+		Segments of Frame addressed sized by OCTETS, in 70s no conseneus on whether a byte was 6 or 8 bits. So networking uses Octets.
+		801.1Q tag is used for VLANs
+
+	The payload section ENCAPSULATES higher levek protocols, for example IP which in turn encapsulates TCP or UDP etc...
+
+	The field denoted as EtherType or Length reflects the diffrent standards in Networking. In version 2 of their standard, Xerox used the field to denote the layer the protocol that is carried inside the payload.
+	The IEEE 802.3 standard for Ethernet used the field to denote the length of the whole frame. If both types existed there would be chaos in the LAN.
+
+	In order to allow Ethernet II and IEEE 802.3 framing to be used on the same Ethernet Segment:
+		A new rule was introduced -> EtherType values (I.E Ethernet II frames will be greater or equal to 1536)
+
+	That value was choosen because the maximum length (MTU) of Ethernet 802.3 frames is 1500 bytes. Thus values 1500 or below indictae that this value is the size of the payload of the Ethernet frame.
+	
+	Whilst values 1536 or above; indicate the field is used to represent an EtherType
+
+So how does Ethernet II standard equipment find the end of the frame if there's no length specification?
+	The answer lies in the way the frame is transimitted. The interpacket Gap is when there is no transmission. The equipment can sense this and determine if a frame has been completed -> Adds lag
+
+Linear Topology:
+	The earliest implementation used computers connected to a BUS with terminator in at cable end.
+
+The computer was a shared transmission. Only ONE could submit at a given time. All could listen.
+	Rare setup, but still out there. Introduces concept of data collision / avoidance. Built into physical layer of Ethernet.
+
+It was important for there to be a terminator at each end. Without it, waves could reflect at the end of the cable and cause disturbances. Computers would read these disturbances.
+	The version with terminators is known as half-duplex
+
+It's a system where you can send / recieve in only one direction at a time. Doing both simultaneously is impossible. 
+
+Collisions:
+	Before trying to transmit, any station listens to the BUS to be idle: then it submits its frame.
+		This is known as Carrier Sense Multiple Access (CSMA)
+
+What happens when two stations try to submit at the same time?
+	Collision
+
+this leads to chaos as transmissions will iterfere with each other. So ethernet has been designed to cope. It
+	Detects
+
+Collisions: It is overall said that Ethernet implements Carrier Sense Multiple Access / Collision Detection
+
+Creators of Ethernet created Binary Exponential Backoff.
+	Bit Time = A property of Network Interface Card
+	Slot Time = A property of signal transmission on the cable
+
+BIT Time:
+	Time in seconds it takes for one bit to be ejected from a NIC. Predefined speed I.E 10mbit/s
+	Time is measured between the time the logical link control sublayer that is in layer 2, recieves instructions from the OS, until the bit actually leaves the NIC
+	
+	BIT Time = (seconds) = 1 / Network Speed	
+	NIC operating at 10 Mbit. What is the BIT time?
+
+	Network Speed = 10 x 10**6	BITs / Seconds
+	BIT Time = 1 / 10 x (10**6) = 100 Nanoseconds
+
+Slot Time
+
+When we place a bit on a cable, we actually create a wave that propogates along the cable. There is a delay between it reaching its destination.
+
+Suppose that two stations that are trying to transmit are at the opposite end of the cable. In order to avoid a transmission it's important that we know how far away the Computers are.
+	If we wait for the wrong amount of time, I.E (Too short) we run the risk that one station will transmit simultaneously with the other becuase it can not sense any voltage on the wire.
+	We call this longest transmission time; the SLOT time.
+
+Binary Exponential Backoff:
+	Algorithim Programmed into every NIC card.
+
+The NIC hardware is already aware of its BIT time & SLOT time.
+
+1. c is a counter for the number of collisions. c = 0
+2. a NIC detects collisions. Sending a jamming signal to stop all transmissions on the shared medium. c = c + 1; if c exceeds value, reset to zero
+3. Pick a RANDOM INTEGER N, between 0 and 2**c - 1. Hopefully each NIC picks a diffrent integer
+4. Multiply N * SLOT time, give a back off interval (T)
+5. Wait T seconds
+6. Try to retransmit, if succesful c = 0; goto 1;
+
+Ethernet - From bus to star topologies - switches
+
+The idea of using a shared medium for LAN has its limitations. The newly designed approach was to use a STAR topology where:
+	Each station has its own connection to a switch
+	Communication is full duplex = No longer uses co-axial cable
+
+Putting these two together: it means that two NICs can communicate without collisions and can send / recieve simulatenously.
+
+There is no longer a COLLISION DOMAIN problem, but there is still a BROADCAST DOMAIN
+
+UTP - Unshielded Twisted Pair cable used

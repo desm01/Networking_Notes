@@ -1,0 +1,93 @@
+Advantages of two LANs joined by Router:
+	Any LAN operates at layer 2, so here we have two (layer 2) networks joined at (layer 3). We therefore need a diffrent network address for each LAN.
+	
+	Within each LAN we have a broadcast domain at layer 2. All NICs can and will discover each other. With 2 -> domains small / low latency
+
+	We can apply basic security rules on the router and limit the traffic that may cross from one LAN to another.
+	I.E Block access to MySQL port 3306 from engineering
+
+Negative:
+	If you had five or ten LANs in a large company / uni; too expensive to buy equipment
+
+
+VLAN:
+
+Using one set of switches to run several diffrent LANs on the infrastrucutre. VIRTUAL LANs
+
+the total number of ports (Over all switches) must be greater than or equal to the sum over number of PCs per LAN
+
+
+Still common practice to allocate a DIFFRENT NETWORK ADDRESS to each LAN.
+
+A Router is then used to route between diffrent VLANs running on the infrastrucutre as well as to other LANs and to the internet.
+
+To enable VLANs we need to build a switching infrastrucure.
+	Using MANAGED SWITCHES:
+		Good idea to use the same manufacturer
+
+A managed Switch is a device that can be congifured and properly managed to offer a more tailored experince to those who will be utilising it.
+	Offer tools to manage, monitor network and traffic
+
+Managed Switches can be seen as specialised computers having one or more command line interfaces. Accessed via shell, web interface or SNMP tools
+
+The IEEE 802.1Q standard added a TAG field to the format. The VLAN tag!
+
+********************** IMPORTANT
+	At the Switch, the VLAN tag is added / removed. PC-a & PC-b are never aware of their VLAN.
+
+	NIC on each PC recieves ordinary Ethernet Packets. All removal / adding of VLAN tags happens on Switches.
+
+Traffic can not move from one VLAN to another inside the switch. We need to go to Layer 3 to ROUTE packets between VLANs
+
+Each Pyshical port is assigned to one VLAN.
+
+An UNMANAGED switch is a device that has no management interface.
+
+	Some unmanaged swithces don't understand the presence of the VLAN tag and may drop the packet
+	There is no way to configure a VLAN for each port on an unmanaged switch
+
+	Mixing managed switches / unmanaged switches in one switching fabric could create chaos if VLANs are used
+
+VLANs over multiple switches.
+	We need several switches to be able to supply enough ports for all the PCs and printers in the building.
+	Generally we would put a switch on each floor in a building.
+
+In general we will have departments spread across several floors. Maybe the sales departments will have more employees than others etc.
+	We can combine the switches on all floors togther to share their knowledge of VLANs called:	The VLAN database
+		We configure certain ports on each switch as TRUNKING ports. We join the trunking ports together.
+
+The switches exchange details with each other over their TRUNKING ports about the configuration of VLAN ports on that switch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
